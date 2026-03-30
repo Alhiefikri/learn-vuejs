@@ -39,14 +39,17 @@ const search = ref('test');
 function onInput(e) {
   search.value = e.target.value
 }
+
+const isLoggedIn = ref(true)
+const nilai = ref(75)
 </script>
 
 <template>
-  <div class="container">
-    <!--
+  <!-- <div class="container">
+    
       Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
       Ini merender nilai dari variabel JavaScript (nama) langsung ke dalam HTML.
-    -->
+   
     <h1>{{ greeting('Alhie') }}</h1>
 
     <p>Gua belajar vue pada sesi kali ini</p>
@@ -61,9 +64,22 @@ function onInput(e) {
   </div>
 
   <div class="container">
-    <!-- <input type="text" :value="search" @input="onInput"> -->
+    <input type="text" :value="search" @input="onInput">
     <input type="text" v-model="search">
     <p>{{ search }}</p>
+  </div> -->
+
+  <div class="container">
+    <h1 v-if="isLoggedIn">Selamat Datang !</h1>
+    <h1 v-else>Silahkan Login terlebih dahulu</h1>
+    <h1 v-show="isLoggedIn">Selamat v-show</h1>
+  </div>
+
+  <div class="container">
+    <p v-if="nilai >= 90">A</p>
+    <p v-else-if="nilai >= 80">B</p>
+    <p v-else-if="nilai >= 70">C</p>
+    <p v-else>Tidak Lulus</p>
   </div>
 
 </template>
