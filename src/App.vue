@@ -42,6 +42,15 @@ function onInput(e) {
 
 const isLoggedIn = ref(true)
 const nilai = ref(75)
+
+const todos = ref([
+  { id: 1, text: "Belajar Dasar Vue.js", done: true },
+  { id: 2, text: "Memahami Computed Property", done: true },
+  { id: 3, text: "Praktek Form Binding dengan v-model", done: false },
+  { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
+  { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
+])
+
 </script>
 
 <template>
@@ -69,7 +78,7 @@ const nilai = ref(75)
     <p>{{ search }}</p>
   </div> -->
 
-  <div class="container">
+  <!-- <div class="container">
     <h1 v-if="isLoggedIn">Selamat Datang !</h1>
     <h1 v-else>Silahkan Login terlebih dahulu</h1>
     <h1 v-show="isLoggedIn">Selamat v-show</h1>
@@ -80,7 +89,13 @@ const nilai = ref(75)
     <p v-else-if="nilai >= 80">B</p>
     <p v-else-if="nilai >= 70">C</p>
     <p v-else>Tidak Lulus</p>
-  </div>
+  </div> -->
+
+  <ul>
+    <li v-for="todo in todos" :key="todo.id" class="todo-item" :class="todo.done ? 'done' : 'not-done'">
+      {{ todo.text }}
+    </li>
+  </ul>
 
 </template>
 
@@ -88,5 +103,23 @@ const nilai = ref(75)
 .container {
   padding: 20px;
   text-align: center;
+}
+
+.todo-item {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 6px solid;
+}
+
+.done {
+  border-left-color: #28a745;
+}
+
+.not-done {
+  border-left-color: #dc3545;
 }
 </style>
