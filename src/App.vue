@@ -105,7 +105,7 @@ import HelloWord from "./components/greeting/HelloWord.vue";
   </ul> -->
 
   <div>
-    <HelloWord />
+    <HelloWord message="Hello from parent" />
   </div>
 </template>
 
