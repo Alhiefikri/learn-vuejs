@@ -143,8 +143,8 @@ function handleChange(e) {
     </template>
 </Layout> -->
 
-  <MyInput :value="nama" @change="nama = $event" />
-  <MyInput :value="age" @change="age = $event" />
+  <MyInput :value="nama" v-model="nama" />
+  <MyInput :value="age" v-model="age" />
 
   <button @click="() => console.log(nama, age)">Submit</button>
 

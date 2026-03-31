@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 const props = defineProps({
-  value: String
+  modelValue: String
 })
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['update:modelValue'])
 
 function handleInput(e) {
-  emit('change', e.target.value)
+  emit('update:modelValue', e.target.value)
 }
 
 </script>
