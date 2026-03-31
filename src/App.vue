@@ -59,7 +59,9 @@ import Layout from "./components/layout/Layout.vue";
 //   { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
 //   { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
 // ])
-
+function callback() {
+  console.log("button di children di click user")
+}
 </script>
 
 <template>
@@ -114,7 +116,7 @@ import Layout from "./components/layout/Layout.vue";
     </Card>
   </div> -->
 
-  <Layout>
+  <Layout @some-event="() => { console.log(`button di children di click user, ${text}`) }">
     <template #header>
       <h1>Judul Halaman</h1>
     </template>
