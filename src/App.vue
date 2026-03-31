@@ -2,6 +2,7 @@
 import { ref, reactive, computed, watch } from "vue";
 import HelloWord from "./components/greeting/HelloWord.vue";
 import Card from "./components/slot/Card.vue";
+import Layout from "./components/layout/Layout.vue";
 
 // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
 // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
@@ -105,13 +106,25 @@ import Card from "./components/slot/Card.vue";
     </li>
   </ul> -->
 
-  <div>
+  <!-- <div>
     <HelloWord message="Hello from parent" />
     <Card>
       <h3>Ini content dari parent</h3>
       <p>Bebas isi apa saja</p>
     </Card>
-  </div>
+  </div> -->
+
+  <Layout>
+    <template #header>
+      <h1>Judul Halaman</h1>
+    </template>
+
+    <p>Ini main konten</p>
+
+    <template #footer>
+      <p>2026 All Right reserved</p>
+    </template>
+  </Layout>
 </template>
 
 <style scoped>
