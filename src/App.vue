@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 
 // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
 // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
@@ -14,10 +14,16 @@ const counter = reactive({ count: 0 });
 function increment(number) {
   counter.count = counter.count + number;
 }
-// const oddoreven = computed(() => {
-//   if (counter.count % 2 == 0) return "Angka count genap"
-//   return "Angka count ganjil"
-// })
+const oddoreven = computed(() => {
+  if (counter.count % 2 == 0) return "Angka count genap"
+  return "Angka count ganjil"
+})
+
+
+
+watch(() => counter.count, (newValue, oldValue) => {
+  console.log(`Nilai count berubah dari ${oldValue} ke ${newValue}`)
+})
 
 
 const message = ref("Hi");
@@ -54,11 +60,11 @@ const todos = ref([
 </script>
 
 <template>
-  <!-- <div class="container">
-    
-      Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
-      Ini merender nilai dari variabel JavaScript (nama) langsung ke dalam HTML.
-   
+  <div class="container">
+
+    <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
+    Ini merender nilai dari variabel JavaScript (nama) langsung ke dalam HTML. -->
+
     <h1>{{ greeting('Alhie') }}</h1>
 
     <p>Gua belajar vue pada sesi kali ini</p>
@@ -76,7 +82,7 @@ const todos = ref([
     <input type="text" :value="search" @input="onInput">
     <input type="text" v-model="search">
     <p>{{ search }}</p>
-  </div> -->
+  </div>
 
   <!-- <div class="container">
     <h1 v-if="isLoggedIn">Selamat Datang !</h1>
@@ -91,11 +97,11 @@ const todos = ref([
     <p v-else>Tidak Lulus</p>
   </div> -->
 
-  <ul>
+  <!-- <ul>
     <li v-for="todo in todos" :key="todo.id" class="todo-item" :class="todo.done ? 'done' : 'not-done'">
       {{ todo.text }}
     </li>
-  </ul>
+  </ul> -->
 
 </template>
 
