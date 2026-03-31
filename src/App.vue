@@ -119,7 +119,10 @@ import Layout from "./components/layout/Layout.vue";
       <h1>Judul Halaman</h1>
     </template>
 
-    <p>Ini main konten</p>
+    <template #default="{ user }">
+      <p>ini main konten</p>
+      <p>Halo Nama gua {{ user.name }}, gua berumur {{ user.age }} </p>
+    </template>
 
     <template #footer>
       <p>2026 All Right reserved</p>

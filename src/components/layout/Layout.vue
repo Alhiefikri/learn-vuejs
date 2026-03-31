@@ -7,10 +7,17 @@
   </header>
 
   <main>
-    <slot></slot>
+    <slot :user="user"></slot>
   </main>
 
   <footer>
     <slot name="footer"></slot>
   </footer>
 </template>
+
+<script setup>
+const user = {
+  name: "Alhie",
+  age: 23
+}
+</script>
