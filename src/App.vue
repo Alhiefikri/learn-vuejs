@@ -1,71 +1,72 @@
 <script setup>
 import { ref, reactive, computed, watch } from "vue";
+import HelloWord from "./components/greeting/HelloWord.vue";
 
 // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
 // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
-console.log("Hello, Gua Alhie");
+// console.log("Hello, Gua Alhie");
 // const nama = "Alhie Fikri";
-function greeting(nama) {
-  return `Hello, gua ${nama}`
-}
+// function greeting(nama) {
+//   return `Hello, gua ${nama}`
+// }
 
-// deklarative rendering
-const counter = reactive({ count: 0 });
-function increment(number) {
-  counter.count = counter.count + number;
-}
-const oddoreven = computed(() => {
-  if (counter.count % 2 == 0) return "Angka count genap"
-  return "Angka count ganjil"
-})
-
-
-
-watch(() => counter.count, (newValue, oldValue) => {
-  console.log(`Nilai count berubah dari ${oldValue} ke ${newValue}`)
-})
+// // deklarative rendering
+// const counter = reactive({ count: 0 });
+// function increment(number) {
+//   counter.count = counter.count + number;
+// }
+// const oddoreven = computed(() => {
+//   if (counter.count % 2 == 0) return "Angka count genap"
+//   return "Angka count ganjil"
+// })
 
 
-const message = ref("Hi");
 
-message.value = "Hello";
+// watch(() => counter.count, (newValue, oldValue) => {
+//   console.log(`Nilai count berubah dari ${oldValue} ke ${newValue}`)
+// })
 
-const link = "https://vuejs.org";
 
-function getRandomNumber() {
-  return Math.random()
-}
+// const message = ref("Hi");
 
-const randomNumber = computed(() => {
-  return Math.random();
-})
+// message.value = "Hello";
 
-const search = ref('test');
+// const link = "https://vuejs.org";
 
-function onInput(e) {
-  search.value = e.target.value
-}
+// function getRandomNumber() {
+//   return Math.random()
+// }
 
-const isLoggedIn = ref(true)
-const nilai = ref(75)
+// const randomNumber = computed(() => {
+//   return Math.random();
+// })
 
-const todos = ref([
-  { id: 1, text: "Belajar Dasar Vue.js", done: true },
-  { id: 2, text: "Memahami Computed Property", done: true },
-  { id: 3, text: "Praktek Form Binding dengan v-model", done: false },
-  { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
-  { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
-])
+// const search = ref('test');
+
+// function onInput(e) {
+//   search.value = e.target.value
+// }
+
+// const isLoggedIn = ref(true)
+// const nilai = ref(75)
+
+// const todos = ref([
+//   { id: 1, text: "Belajar Dasar Vue.js", done: true },
+//   { id: 2, text: "Memahami Computed Property", done: true },
+//   { id: 3, text: "Praktek Form Binding dengan v-model", done: false },
+//   { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
+//   { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
+// ])
 
 </script>
 
 <template>
-  <div class="container">
+  <!-- <div class="container"> -->
 
-    <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
+  <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
     Ini merender nilai dari variabel JavaScript (nama) langsung ke dalam HTML. -->
 
-    <h1>{{ greeting('Alhie') }}</h1>
+  <!-- <h1>{{ greeting('Alhie') }}</h1>
 
     <p>Gua belajar vue pada sesi kali ini</p>
   </div>
@@ -82,7 +83,7 @@ const todos = ref([
     <input type="text" :value="search" @input="onInput">
     <input type="text" v-model="search">
     <p>{{ search }}</p>
-  </div>
+  </div> -->
 
   <!-- <div class="container">
     <h1 v-if="isLoggedIn">Selamat Datang !</h1>
@@ -103,6 +104,9 @@ const todos = ref([
     </li>
   </ul> -->
 
+  <div>
+    <HelloWord />
+  </div>
 </template>
 
 <style scoped>
