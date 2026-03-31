@@ -3,6 +3,7 @@ import { ref, reactive, computed, watch } from "vue";
 import HelloWord from "./components/greeting/HelloWord.vue";
 import Card from "./components/slot/Card.vue";
 import Layout from "./components/layout/Layout.vue";
+import MyInput from "./components/input/MyInput.vue";
 
 // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
 // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
@@ -59,9 +60,17 @@ import Layout from "./components/layout/Layout.vue";
 //   { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
 //   { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
 // ])
-function callback() {
-  console.log("button di children di click user")
+// function callback() {
+//   console.log("button di children di click user")
+// }
+
+const nama = ref('');
+const age = ref('');
+
+function handleChange(e) {
+  nama.value = e
 }
+
 </script>
 
 <template>
@@ -116,20 +125,29 @@ function callback() {
     </Card>
   </div> -->
 
-  <Layout @some-event="() => { console.log(`button di children di click user, ${text}`) }">
+  <!-- <Layout @some-event="() => { console.log(`button di children di click user, ${text}`) }">
+
+
+
     <template #header>
       <h1>Judul Halaman</h1>
     </template>
 
-    <template #default="{ user }">
+<template #default="{ user }">
       <p>ini main konten</p>
       <p>Halo Nama gua {{ user.name }}, gua berumur {{ user.age }} </p>
     </template>
 
-    <template #footer>
+<template #footer>
       <p>2026 All Right reserved</p>
     </template>
-  </Layout>
+</Layout> -->
+
+  <MyInput :value="nama" @change="nama = $event" />
+  <MyInput :value="age" @change="age = $event" />
+
+  <button @click="() => console.log(nama, age)">Submit</button>
+
 </template>
 
 <style scoped>
