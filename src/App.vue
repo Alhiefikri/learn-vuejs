@@ -4,6 +4,10 @@ import HelloWord from "./components/greeting/HelloWord.vue";
 import Card from "./components/slot/Card.vue";
 import Layout from "./components/layout/Layout.vue";
 import MyInput from "./components/input/MyInput.vue";
+import Home from "./components/pages/Home.vue";
+import Settings from "./components/pages/Settings.vue";
+import Profile from "./components/pages/Profile.vue";
+import Parent from "./components/turunan/Parent.vue";
 
 // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
 // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
@@ -64,16 +68,33 @@ import MyInput from "./components/input/MyInput.vue";
 //   console.log("button di children di click user")
 // }
 
-const nama = ref('');
-const age = ref('');
+// const nama = ref('');
+// const age = ref('');
 
-function handleChange(e) {
-  nama.value = e
-}
+// function handleChange(e) {
+//   nama.value = e
+// }
+
+// const current = ref('home');
+
+// const mapComp = {
+//   'home': Home,
+//   'settings': Settings,
+//   'profile': Profile
+// }
 
 </script>
 
 <template>
+
+  <Parent />
+
+  <!-- <button @click="current = 'home'">Home</button>
+  <button @click="current = 'settings'">Setting</button>
+  <button @click="current = 'profile'">Profile</button>
+
+  <Component :is="mapComp[current]" /> -->
+
   <!-- <div class="container"> -->
 
   <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
@@ -143,10 +164,12 @@ function handleChange(e) {
     </template>
 </Layout> -->
 
-  <MyInput :value="nama" v-model="nama" />
+  <!-- <MyInput :value="nama" v-model="nama" />
   <MyInput :value="age" v-model="age" />
 
-  <button @click="() => console.log(nama, age)">Submit</button>
+  <button @click="() => console.log(nama, age)">Submit</button> -->
+
+
 
 </template>
 
