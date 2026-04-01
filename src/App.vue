@@ -1,115 +1,153 @@
 <script setup>
-import { ref, reactive, computed, watch } from "vue";
-import HelloWord from "./components/greeting/HelloWord.vue";
-import Card from "./components/slot/Card.vue";
-import Layout from "./components/layout/Layout.vue";
-import MyInput from "./components/input/MyInput.vue";
-import Home from "./components/pages/Home.vue";
-import Settings from "./components/pages/Settings.vue";
-import Profile from "./components/pages/Profile.vue";
-import Parent from "./components/turunan/Parent.vue";
+    import {
+        ref,
+        reactive,
+        computed,
+        watch
+    } from "vue";
+    import HelloWord from "./components/greeting/HelloWord.vue";
+    import Card from "./components/slot/Card.vue";
+    import Layout from "./components/layout/Layout.vue";
+    import MyInput from "./components/input/MyInput.vue";
+    import Home from "./components/pages/Home.vue";
+    import Settings from "./components/pages/Settings.vue";
+    import Profile from "./components/pages/Profile.vue";
+    import Parent from "./components/turunan/Parent.vue";
 
-// Bagian script setup adalah tempat kita mendefinisikan logic dan data.
-// Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
-// console.log("Hello, Gua Alhie");
-// const nama = "Alhie Fikri";
-// function greeting(nama) {
-//   return `Hello, gua ${nama}`
-// }
+    // Bagian script setup adalah tempat kita mendefinisikan logic dan data.
+    // Variabel 'nama' ini akan kita panggil di template menggunakan interpolation.
+    // console.log("Hello, Gua Alhie");
+    // const nama = "Alhie Fikri";
+    // function greeting(nama) {
+    //   return `Hello, gua ${nama}`
+    // }
 
-// // deklarative rendering
-// const counter = reactive({ count: 0 });
-// function increment(number) {
-//   counter.count = counter.count + number;
-// }
-// const oddoreven = computed(() => {
-//   if (counter.count % 2 == 0) return "Angka count genap"
-//   return "Angka count ganjil"
-// })
-
-
-
-// watch(() => counter.count, (newValue, oldValue) => {
-//   console.log(`Nilai count berubah dari ${oldValue} ke ${newValue}`)
-// })
+    // // deklarative rendering
+    // const counter = reactive({ count: 0 });
+    // function increment(number) {
+    //   counter.count = counter.count + number;
+    // }
+    // const oddoreven = computed(() => {
+    //   if (counter.count % 2 == 0) return "Angka count genap"
+    //   return "Angka count ganjil"
+    // })
 
 
-// const message = ref("Hi");
 
-// message.value = "Hello";
+    // watch(() => counter.count, (newValue, oldValue) => {
+    //   console.log(`Nilai count berubah dari ${oldValue} ke ${newValue}`)
+    // })
 
-// const link = "https://vuejs.org";
 
-// function getRandomNumber() {
-//   return Math.random()
-// }
+    // const message = ref("Hi");
 
-// const randomNumber = computed(() => {
-//   return Math.random();
-// })
+    // message.value = "Hello";
 
-// const search = ref('test');
+    // const link = "https://vuejs.org";
 
-// function onInput(e) {
-//   search.value = e.target.value
-// }
+    // function getRandomNumber() {
+    //   return Math.random()
+    // }
 
-// const isLoggedIn = ref(true)
-// const nilai = ref(75)
+    // const randomNumber = computed(() => {
+    //   return Math.random();
+    // })
 
-// const todos = ref([
-//   { id: 1, text: "Belajar Dasar Vue.js", done: true },
-//   { id: 2, text: "Memahami Computed Property", done: true },
-//   { id: 3, text: "Praktek Form Binding dengan v-model", done: false },
-//   { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
-//   { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
-// ])
-// function callback() {
-//   console.log("button di children di click user")
-// }
+    // const search = ref('test');
 
-// const nama = ref('');
-// const age = ref('');
+    // function onInput(e) {
+    //   search.value = e.target.value
+    // }
 
-// function handleChange(e) {
-//   nama.value = e
-// }
+    // const isLoggedIn = ref(true)
+    // const nilai = ref(75)
 
-const current = ref('home');
+    // const todos = ref([
+    //   { id: 1, text: "Belajar Dasar Vue.js", done: true },
+    //   { id: 2, text: "Memahami Computed Property", done: true },
+    //   { id: 3, text: "Praktek Form Binding dengan v-model", done: false },
+    //   { id: 4, text: "Belajar Conditional Rendering (v-if & v-show)", done: false },
+    //   { id: 5, text: "Implementasi List Rendering (v-for)", done: false }
+    // ])
+    // function callback() {
+    //   console.log("button di children di click user")
+    // }
 
-const mapComp = {
-  'home': Home,
-  'settings': Settings,
-  'profile': Profile
-}
+    // const nama = ref('');
+    // const age = ref('');
 
+    // function handleChange(e) {
+    //   nama.value = e
+    // }
+
+    const current = ref('home');
+
+    const mapComp = {
+        'home': Home,
+        'settings': Settings,
+        'profile': Profile
+    }
+
+    // KeepAlive: Cache component tertentu saja
+    // include: hanya component ini yang di-cache
+    // exclude: component ini TIDAK di-cache
+    // max: maksimal jumlah component yang di-cache
+    const cachedViews = ['home', 'settings'] // Profile tidak di-cache
 </script>
 
 <template>
 
-  <!-- <Parent /> -->
+    <!-- <Parent /> -->
 
-  <button @click="current = 'home'">Home</button>
-  <button @click="current = 'settings'">Setting</button>
-  <button @click="current = 'profile'">Profile</button>
+    <button @click="current = 'home'">Home</button>
+    <button @click="current = 'settings'">Setting</button>
+    <button @click="current = 'profile'">Profile</button>
 
-  <Component :is="mapComp[current]" />
+    <!-- 
+      KeepAlive: Component yang di-cache TIDAK akan di-unmount
+      Hanya di-deactivate saat hidden, dan di-activate saat shown again
+      
+      Props:
+      - include: hanya component ini yang di-cache (string | RegExp | Array)
+      - exclude: component ini TIDAK di-cache
+      - max: maksimal jumlah component yang di-cache
+    -->
+    
+    <!-- Opsi 1: Cache semua component (Home, Settings, Profile) -->
+    <!-- <KeepAlive>
+        <Component :is="mapComp[current]" />
+    </KeepAlive> -->
 
-  <!-- <div class="container"> -->
+    <!-- Opsi 2: Cache semua KECUALI Profile (RECOMMENDED untuk demo) -->
+    <KeepAlive exclude="Profile">
+        <Component :is="mapComp[current]" />
+    </KeepAlive>
 
-  <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
+    <!-- Opsi 3: Hanya cache component tertentu -->
+    <!-- <KeepAlive include="Home,Settings">
+        <Component :is="mapComp[current]" />
+    </KeepAlive> -->
+
+    <!-- Opsi 4: Max cache size -->
+    <!-- <KeepAlive :max="2">
+        <Component :is="mapComp[current]" />
+    </KeepAlive> -->
+
+    <!-- <div class="container"> -->
+
+    <!-- Interpolation (Mustache Syntax) menggunakan double curly braces {{ }}
     Ini merender nilai dari variabel JavaScript (nama) langsung ke dalam HTML. -->
 
-  <!-- <h1>{{ greeting('Alhie') }}</h1>
+    <!-- <h1>{{ greeting('Alhie') }}</h1>
 
     <p>Gua belajar vue pada sesi kali ini</p>
   </div>
   <div class="container">
-    <button @click="increment(1)">Count is {{ counter.count }}</button>
+    <button @click="increment(1)">Count is {{ counter . count }}</button>
     <p>{{ getRandomNumber() }}</p>
     <p>{{ randomNumber }}</p>
     <p>{{ message }}</p>
-    <p>{{ message.split("").reverse().join("") }}</p>
+    <p>{{ message . split('') . reverse() . join('') }}</p>
     <a :href="link">Kunjungi Vue pakai vbind</a>
   </div>
 
@@ -119,7 +157,7 @@ const mapComp = {
     <p>{{ search }}</p>
   </div> -->
 
-  <!-- <div class="container">
+    <!-- <div class="container">
     <h1 v-if="isLoggedIn">Selamat Datang !</h1>
     <h1 v-else>Silahkan Login terlebih dahulu</h1>
     <h1 v-show="isLoggedIn">Selamat v-show</h1>
@@ -132,13 +170,13 @@ const mapComp = {
     <p v-else>Tidak Lulus</p>
   </div> -->
 
-  <!-- <ul>
+    <!-- <ul>
     <li v-for="todo in todos" :key="todo.id" class="todo-item" :class="todo.done ? 'done' : 'not-done'">
-      {{ todo.text }}
+      {{ todo . text }}
     </li>
   </ul> -->
 
-  <!-- <div>
+    <!-- <div>
     <HelloWord message="Hello from parent" />
     <Card>
       <h3>Ini content dari parent</h3>
@@ -146,7 +184,7 @@ const mapComp = {
     </Card>
   </div> -->
 
-  <!-- <Layout @some-event="() => { console.log(`button di children di click user, ${text}`) }">
+    <!-- <Layout @some-event="() => { console.log(`button di children di click user, ${text}`) }">
 
 
 
@@ -156,7 +194,7 @@ const mapComp = {
 
 <template #default="{ user }">
       <p>ini main konten</p>
-      <p>Halo Nama gua {{ user.name }}, gua berumur {{ user.age }} </p>
+      <p>Halo Nama gua {{ user . name }}, gua berumur {{ user . age }} </p>
     </template>
 
 <template #footer>
@@ -164,7 +202,7 @@ const mapComp = {
     </template>
 </Layout> -->
 
-  <!-- <MyInput :value="nama" v-model="nama" />
+    <!-- <MyInput :value="nama" v-model="nama" />
   <MyInput :value="age" v-model="age" />
 
   <button @click="() => console.log(nama, age)">Submit</button> -->
@@ -176,26 +214,26 @@ const mapComp = {
 </template>
 
 <style scoped>
-.container {
-  padding: 20px;
-  text-align: center;
-}
+    .container {
+        padding: 20px;
+        text-align: center;
+    }
 
-.todo-item {
-  padding: 10px 14px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-left: 6px solid;
-}
+    .todo-item {
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-left: 6px solid;
+    }
 
-.done {
-  border-left-color: #28a745;
-}
+    .done {
+        border-left-color: #28a745;
+    }
 
-.not-done {
-  border-left-color: #dc3545;
-}
+    .not-done {
+        border-left-color: #dc3545;
+    }
 </style>
