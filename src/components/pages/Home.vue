@@ -1,8 +1,9 @@
 <template>
   <div class="home-page">
     <h1>🏠 Home Page</h1>
-    <p>Counter: <strong>{{ counter }}</strong></p>
-    <button @click="counter++">Increment (+)</button>
+    <p>Counter: <strong>{{ count }}</strong></p>
+    <button @click="increment">Increment (+)</button>
+    <button @click="decrement">Decrement (-)</button>
 
     <div style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px;">
       <h3>📜 Test KeepAlive:</h3>
@@ -25,7 +26,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+
+import { useCounter } from '@/composables/useCounter'
+
 import {
   onMounted,
   onBeforeUnmount,
@@ -35,7 +38,8 @@ import {
   onUpdated
 } from 'vue'
 
-const counter = ref(0)
+
+const { count, increment, decrement } = useCounter(5, 3)
 
 // Lifecycle hooks untuk KeepAlive
 console.log("🏠 [Home] Component created")
