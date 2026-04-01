@@ -75,25 +75,25 @@ import Parent from "./components/turunan/Parent.vue";
 //   nama.value = e
 // }
 
-// const current = ref('home');
+const current = ref('home');
 
-// const mapComp = {
-//   'home': Home,
-//   'settings': Settings,
-//   'profile': Profile
-// }
+const mapComp = {
+  'home': Home,
+  'settings': Settings,
+  'profile': Profile
+}
 
 </script>
 
 <template>
 
-  <Parent />
+  <!-- <Parent /> -->
 
-  <!-- <button @click="current = 'home'">Home</button>
+  <button @click="current = 'home'">Home</button>
   <button @click="current = 'settings'">Setting</button>
   <button @click="current = 'profile'">Profile</button>
 
-  <Component :is="mapComp[current]" /> -->
+  <Component :is="mapComp[current]" />
 
   <!-- <div class="container"> -->
 
@@ -168,6 +168,8 @@ import Parent from "./components/turunan/Parent.vue";
   <MyInput :value="age" v-model="age" />
 
   <button @click="() => console.log(nama, age)">Submit</button> -->
+
+
 
 
 
