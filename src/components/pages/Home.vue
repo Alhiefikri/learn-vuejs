@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <h1>🏠 Home Page</h1>
-    <p>Counter: <strong>{{ count }}</strong></p>
+    <p ref="box">Counter: <strong>{{ count }}</strong></p>
     <button @click="increment">Increment (+)</button>
     <button @click="decrement">Decrement (-)</button>
 
@@ -39,7 +39,7 @@ import {
 } from 'vue'
 
 
-const { count, increment, decrement } = useCounter(5, 3)
+const { count, increment, decrement, box } = useCounter(5, 3)
 
 // Lifecycle hooks untuk KeepAlive
 console.log("🏠 [Home] Component created")
