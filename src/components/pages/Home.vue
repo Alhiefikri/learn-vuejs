@@ -3,7 +3,7 @@
     <h1>🏠 Home Page</h1>
     <p>Counter: <strong>{{ counter }}</strong></p>
     <button @click="counter++">Increment (+)</button>
-    
+
     <div style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px;">
       <h3>📜 Test KeepAlive:</h3>
       <ol>
@@ -14,7 +14,7 @@
         <li><strong>Counter dan scroll position TETAP!</strong> ✅</li>
       </ol>
     </div>
-    
+
     <div style="margin-top: 20px;">
       <p>👇 Scroll down untuk test scroll position:</p>
       <p v-for="i in 50" :key="i" style="padding: 5px 0;">
@@ -26,11 +26,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { 
-  onMounted, 
-  onBeforeUnmount, 
-  onActivated, 
-  onDeactivated 
+import {
+  onMounted,
+  onBeforeUnmount,
+  onActivated,
+  onDeactivated,
+  onBeforeUpdate,
+  onUpdated
 } from 'vue'
 
 const counter = ref(0)
@@ -54,6 +56,14 @@ onActivated(() => {
 // Hook khusus KeepAlive - jalan saat component di-deactivate (masuk cache)
 onDeactivated(() => {
   console.log("🏠 [Home] Deactivated - component disimpan ke cache")
+})
+
+onBeforeUpdate(() => {
+  console.log('on before update')
+})
+
+onUpdated(() => {
+  console.log('on updated')
 })
 </script>
 
