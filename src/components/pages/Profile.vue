@@ -1,21 +1,18 @@
 <template>
   <div class="profile-page">
     <h1>👤 Profile Page</h1>
+    <button @click="handleClick">Go to Home</button>
     <p>Profile <strong>TIDAK di-cache</strong> (exclude dari KeepAlive)</p>
-    
+
     <div style="margin-top: 20px;">
-      <input 
-        type="text" 
-        v-model="name" 
-        placeholder="Enter your name"
-        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;"
-      />
+      <input type="text" v-model="name" placeholder="Enter your name"
+        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;" />
     </div>
-    
+
     <p style="margin-top: 10px;">
       Input value: <strong>{{ name || '(empty)' }}</strong>
     </p>
-    
+
     <div style="margin-top: 20px; padding: 15px; background: #fee; border-radius: 8px; border-left: 4px solid #ef4444;">
       <h3>⚠️ Perhatikan:</h3>
       <p>Karena Profile <strong>TIDAK di-cache</strong>:</p>
@@ -32,6 +29,13 @@
 <script setup>
 import { ref } from 'vue'
 import { onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function handleClick() {
+  router.push('/')
+}
 
 const name = ref('')
 

@@ -1,0 +1,3 @@
+<template>
+  Profit Page
+</template>
